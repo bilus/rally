@@ -2,15 +2,15 @@
 
 ### v0.0.1
 
-- [ ] Only logged users can view/do anything
+- [X] Only logged users can view/do anything
+- [x] Author
+- [x] Author can edit/delete
 - [ ] Google SSO
 - [ ] Host it
 
 ### v0.0.2
 
 - [ ] Weekly upvote/downvote budget (?)
-- [ ] Author
-- [ ] Author can edit/delete
 
 ### v0.0.3
 

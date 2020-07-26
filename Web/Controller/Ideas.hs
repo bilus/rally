@@ -42,7 +42,7 @@ instance Controller IdeasController where
         render NewView { .. }
 
     action ShowIdeaAction { ideaId } = do
-        idea <- fetch ideaId
+        idea :: Include "authorId" Idea <- fetch ideaId >>= fetchRelated #authorId
         render ShowView { .. }
 
     action EditIdeaAction { ideaId } = do
@@ -60,7 +60,7 @@ instance Controller IdeasController where
                 Right idea -> do
                     idea <- idea |> updateRecord
                     setSuccessMessage "Idea updated"
-                    redirectTo EditIdeaAction { .. }
+                    redirectTo ShowIdeaAction { .. }
 
     action CreateIdeaAction = do
         let authorId = (get #id currentUser)

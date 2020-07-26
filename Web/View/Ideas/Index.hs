@@ -33,23 +33,9 @@ renderIdea idea = [hsx|
         <td><a href={ShowIdeaAction (get #id idea)}>{get #title idea}</a></td>
         <td>{author idea}</td>
         <td>{get #createdAt idea |> timeAgo}</td>
-        {maybeDelete idea}
     </tr>
 |]
 
 author idea =
   let author = (get #authorId idea) in
     (get #email author)
-
-maybeDelete idea =
-  if isAuthor idea
-    then
-        [hsx|
-             <td>
-             <a href={DeleteIdeaAction (get #id idea)} class="js-delete text-muted">Delete</a>
-             </td>
-        |]
-    else
-        [hsx|
-            <td></td>
-        |]
