@@ -47,10 +47,12 @@ instance Controller IdeasController where
 
     action EditIdeaAction { ideaId } = do
         idea <- fetch ideaId
+        ensureUserIsAuthor idea
         render EditView { .. }
 
     action UpdateIdeaAction { ideaId } = do
         idea <- fetch ideaId
+        ensureUserIsAuthor idea
         idea
             |> buildIdea
             |> ifValid \case
@@ -75,6 +77,7 @@ instance Controller IdeasController where
 
     action DeleteIdeaAction { ideaId } = do
         idea <- fetch ideaId
+        ensureUserIsAuthor idea
         deleteRecord idea
         setSuccessMessage "Idea deleted"
         redirectTo IdeasAction
@@ -82,3 +85,6 @@ instance Controller IdeasController where
 buildIdea idea = idea
     |> fill @["title","explanation"]
     |> validateField #title nonEmpty
+
+ensureUserIsAuthor idea =
+  accessDeniedUnless $ get #authorId idea == currentUserId
