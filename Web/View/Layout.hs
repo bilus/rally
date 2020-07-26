@@ -23,6 +23,8 @@ defaultLayout inner = H.docTypeHtml ! A.lang "en" $ [hsx|
 </head>
 <body>
     <div class="container mt-4">
+        <a href={NewSessionAction}>Login</a>
+        <a class="js-delete js-delete-no-confirm" href={DeleteSessionAction}>Logout</a>
         {renderFlashMessages}
         {inner}
     </div>

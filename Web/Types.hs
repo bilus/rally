@@ -6,6 +6,8 @@ import IHP.ModelSupport
 import Application.Helper.Controller
 import IHP.ViewSupport
 import Generated.Types
+import IHP.LoginSupport.Types -- Login
+
 
 data WebApplication = WebApplication deriving (Eq, Show)
 
@@ -26,4 +28,16 @@ data IdeasController
     | DeleteIdeaAction { ideaId :: !(Id Idea) }
     | UpvoteAction { ideaId :: !(Id Idea) }
     | DownvoteAction { ideaId :: !(Id Idea) }
+    deriving (Eq, Show, Data)
+
+-- Login
+instance HasNewSessionUrl User where
+    newSessionUrl _ = "/NewSession"
+
+data SessionsController
+    = NewSessionAction
+    | CreateSessionAction
+    | DeleteSessionAction
+    | CreateUserAction
+    | NewUserAction
     deriving (Eq, Show, Data)

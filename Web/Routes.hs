@@ -7,3 +7,5 @@ import Web.Types
 instance AutoRoute IdeasController
 type instance ModelControllerMap WebApplication Idea = IdeasController
 
+-- Login
+instance AutoRoute SessionsController

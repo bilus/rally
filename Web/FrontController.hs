@@ -8,11 +8,19 @@ import Web.Types
 import Web.Controller.Ideas
 import IHP.Welcome.Controller
 
+-- Login:
+import IHP.LoginSupport.Middleware
+import Web.Controller.Sessions
+
 instance FrontController WebApplication where
-    controllers = 
+    controllers =
         [ startPage WelcomeAction
         -- Generator Marker
         , parseRoute @IdeasController
+        , parseRoute @SessionsController -- Login.
         ]
 
-instance InitControllerContext WebApplication
+instance InitControllerContext WebApplication where
+  -- Login
+  initContext =
+        initAuthentication @User
