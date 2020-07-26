@@ -8,12 +8,12 @@ instance View ShowView ViewContext where
     html ShowView { .. } = [hsx|
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href={IdeasAction}>Shows</a></li>
-                <li class="breadcrumb-item active">Show Idea</li>
+                <li class="breadcrumb-item"><a href={IdeasAction}>Ideas</a></li>
+                <li class="breadcrumb-item active">{get #title idea}</li>
             </ol>
         </nav>
-        <h1>{ get #title idea }</h1>
-        <p>{ get #explanation idea |> fromMarkdown }</p>
+        <h1>{get #title idea}</h1>
+        <p>{get #explanation idea |> fromMarkdown}</p>
     |]
 
 fromMarkdown text =

@@ -23,8 +23,7 @@ defaultLayout inner = H.docTypeHtml ! A.lang "en" $ [hsx|
 </head>
 <body>
     <div class="container mt-4">
-        <a href={NewSessionAction}>Login</a>
-        <a class="js-delete js-delete-no-confirm" href={DeleteSessionAction}>Logout</a>
+        {sessionLinks $ get #user viewContext}
         {renderFlashMessages}
         {inner}
     </div>
@@ -65,3 +64,15 @@ metaTags = [hsx|
     <meta property="og:url" content="TODO"/>
     <meta property="og:description" content="TODO"/>
 |]
+
+
+sessionLinks user =
+  case user of
+    Just _ ->
+        [hsx|
+            <a class="js-delete js-delete-no-confirm" href={DeleteSessionAction}>Logout</a>
+        |]
+    Nothing ->
+        [hsx|
+            <a href={NewSessionAction}>Login</a>
+        |]

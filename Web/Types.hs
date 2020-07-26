@@ -16,6 +16,7 @@ data ViewContext = ViewContext
     , flashMessages :: [IHP.Controller.Session.FlashMessage]
     , controllerContext :: ControllerSupport.ControllerContext
     , layout :: Layout
+    , user :: Maybe User
     }
 
 data IdeasController
