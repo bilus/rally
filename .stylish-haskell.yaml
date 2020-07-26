@@ -228,3 +228,14 @@ language_extensions:
   - NamedFieldPuns
   - TemplateHaskell
   - QuasiQuotes
+  - DataKinds
+  - MultiParamTypeClasses
+  - RecordWildCards
+  - ScopedTypeVariables
+  - TypeSynonymInstances
+  - FlexibleInstances
+  - DuplicateRecordFields
+  - OverloadedLabels
+  - FlexibleContexts
+  - TypeApplications
+  - LambdaCase

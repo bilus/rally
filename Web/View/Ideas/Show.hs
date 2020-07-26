@@ -1,6 +1,6 @@
 module Web.View.Ideas.Show where
-import Web.View.Prelude
-import qualified Text.MMark as MD
+import qualified Text.MMark       as MD
+import           Web.View.Prelude
 
 data ShowView = ShowView { idea :: Include "authorId" Idea }
 
@@ -21,7 +21,7 @@ instance View ShowView ViewContext where
 
 fromMarkdown text =
   case text |> MD.parse "" of
-    Left error -> "Something went wrong"
+    Left error     -> "Something went wrong"
     Right markdown -> MD.render markdown |> tshow |> preEscapedToHtml
 
 authorMenu idea =

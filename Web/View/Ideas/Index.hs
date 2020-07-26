@@ -1,5 +1,5 @@
 module Web.View.Ideas.Index where
-import Web.View.Prelude
+import           Web.View.Prelude
 
 data IndexView = IndexView { ideas :: [Include "authorId" Idea] }
 

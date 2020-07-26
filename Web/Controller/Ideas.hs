@@ -1,14 +1,14 @@
 module Web.Controller.Ideas where
 
-import Web.Controller.Prelude
-import Web.View.Ideas.Index
-import Web.View.Ideas.New
-import Web.View.Ideas.Edit
-import Web.View.Ideas.Show
-import Web.View.Ideas.Index
-import Web.View.Ideas.New
-import Web.View.Ideas.Show
-import Web.View.Ideas.Edit
+import           Web.Controller.Prelude
+import           Web.View.Ideas.Edit
+import           Web.View.Ideas.Edit
+import           Web.View.Ideas.Index
+import           Web.View.Ideas.Index
+import           Web.View.Ideas.New
+import           Web.View.Ideas.New
+import           Web.View.Ideas.Show
+import           Web.View.Ideas.Show
 
 instance Controller IdeasController where
     beforeAction = ensureIsUser
@@ -43,7 +43,7 @@ instance Controller IdeasController where
 
     action ShowIdeaAction { ideaId } = do
         idea :: Include "authorId" Idea <- fetch ideaId >>= fetchRelated #authorId
-        render ShowView { .. }
+        render ShowView { ..  }
 
     action EditIdeaAction { ideaId } = do
         idea <- fetch ideaId

@@ -1,9 +1,9 @@
 module Web.Controller.Sessions where
 
-import Web.Controller.Prelude
-import Web.View.Sessions.New
-import Web.View.Sessions.NewUser
 import qualified IHP.AuthSupport.Controller.Sessions as Sessions
+import           Web.Controller.Prelude
+import           Web.View.Sessions.New
+import           Web.View.Sessions.NewUser
 
 instance Controller SessionsController where
     action NewUserAction = do
