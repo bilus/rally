@@ -31,9 +31,10 @@ instance Controller IdeasController where
         redirectTo IdeasAction
 
     action IdeasAction = do
-        ideas <- query @Idea
+        ideas :: [Include "authorId" Idea] <- query @Idea
           |> orderByDesc #votes
           |> fetch
+          >>= collectionFetchRelated #authorId
         render IndexView { .. }
 
     action NewIdeaAction = do
@@ -60,7 +61,9 @@ instance Controller IdeasController where
                     redirectTo EditIdeaAction { .. }
 
     action CreateIdeaAction = do
-        let idea = newRecord @Idea
+        let authorId = (get #id currentUser)
+            idea = newRecord @Idea
+                        |> set #authorId authorId
         idea
             |> buildIdea
             |> ifValid \case

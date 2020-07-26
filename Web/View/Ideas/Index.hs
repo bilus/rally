@@ -1,7 +1,7 @@
 module Web.View.Ideas.Index where
 import Web.View.Prelude
 
-data IndexView = IndexView { ideas :: [Idea] }
+data IndexView = IndexView { ideas :: [Include "authorId" Idea] }
 
 instance View IndexView ViewContext where
     html IndexView { .. } = [hsx|
@@ -31,7 +31,12 @@ renderIdea idea = [hsx|
             <a href={DownvoteAction (get #id idea)} class="js-update">Downvote</a>
         </td>
         <td><a href={ShowIdeaAction (get #id idea)}>{get #title idea}</a></td>
+        <td>{author idea}</td>
         <td>{get #createdAt idea |> timeAgo}</td>
         <td><a href={DeleteIdeaAction (get #id idea)} class="js-delete text-muted">Delete</a></td>
     </tr>
 |]
+
+author idea =
+  let author = (get #authorId idea) in
+    (get #email author)
