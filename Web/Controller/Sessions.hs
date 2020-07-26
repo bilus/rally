@@ -7,10 +7,12 @@ import qualified IHP.AuthSupport.Controller.Sessions as Sessions
 
 instance Controller SessionsController where
     action NewUserAction = do
+        ensureIsUser
         let user = newRecord @User
         render NewUserView { .. }
 
     action CreateUserAction = do
+        ensureIsUser
         let user = newRecord @User
         user
             |> fill @["email", "passwordHash"]

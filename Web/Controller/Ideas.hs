@@ -11,6 +11,8 @@ import Web.View.Ideas.Show
 import Web.View.Ideas.Edit
 
 instance Controller IdeasController where
+    beforeAction = ensureIsUser
+
     action DownvoteAction { ideaId } = do
         idea <- fetch ideaId
         let votes = (get #votes idea)
